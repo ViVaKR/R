@@ -211,7 +211,6 @@ diff(trafic.death) # 인접한 값과 차이 (뒤 - 앞) -> -113   57  -35   93 
 diff(c(3, 5, 1, NA, 2, 5)) # 결측값 부분은 출력 안됨
 diff(1:5, lag = 2) # lag 만큼 떨어진 부분과의 차이 -> 2 2 2
 
-
 # 집합 함수
 p <- 1:10
 q <- 6:15
@@ -219,8 +218,8 @@ union(p,q) # 합집합 -> 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
 intersect(p,q) # 교집합 -> 6  7  8  9 10
 setdiff(p,q) # 차집합 -> 1 2 3 4 5
 setequal(p, q) # 두 집합의 동일여부 -> FALSE
-is.element(setdiff(p,q), p) # 앞에 집합에 뒤에 각 요소가 있는지 여부 -> TRUE TRUE TRUE TRUE TRUE
-
+is.element(setdiff(p,q), p) # 앞에 집합에 뒤에 각 요소가 앞 요소에 있는지 여부 -> TRUE TRUE TRUE TRUE TRUE
+is.element(setdiff(p,q), q) #-> FALSE FALSE FALSE FALSE FALSE
 
 
 

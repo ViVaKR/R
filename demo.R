@@ -164,37 +164,4 @@ Inf * Inf #-> Inf
 Inf * (-Inf) #-> -Inf
 Inf / Inf # NaN
 
-is.infinite(1.8 * 10.^308 ) # 무한대 일 경우 = TRUE, 무한대의 수 로 인식하는 수 => 1.8 * 10.^308 
-
-
-
-data("mtcars")
-wt <- mtcars$wt
-mpg <- mtcars$mpg
-plot(wt, mpg, main="중량-연비 산점도",
-     xlab="중량(wt)",
-     ylab="연비(mpg)",
-     col="blue",
-     pch=15)
-
-data("USArrests")
-vars <- c("UrbanPop", "Murder", "Assault")
-abc <- USArrests[,vars]
-pairs(abc)
-
-
-?data
-help("USArrests")
-
-tail(USArrests)
-library(Urbanpop)
-
-
-
-
-
-
-
-
-
-
+is.infinite(1.8 * 10.^308 ) # 무한대 일 경우 = TRUE, 무한대의 수 로 인식하는 수 => 1.8 * 10.^308

@@ -179,33 +179,51 @@ is.na(NaN) #-> TRUE
 z <- 1:5
 sum(z)
 max(z)
+min(z)
+mean(z) # 평균
+range(z) # 최대값 최소값
 prod(z) #-> 120, 백터 요소들 모든 곱을 반환, Product of Vector
+var(z) # 분산
+sd(z) # 표준편차
+
+# 결측값이 있는 백터
+w <- c(10, 20, 30, 40, 50, NA)
+mean(w)
+mean(w, na.rm = TRUE) #-> 30, NA 빼고
+sum(w) #-> NA
+sum(w, na.rm = TRUE) #-> 150, NA 은 뺌
+sum(na.omit(w)) #-> 150, 위와 동일
+
+# 모두 결측값으로 구성된 백터 : 약속된 값으로 출력
+v <- c(NA, NA, NA, NA, NA)
+sum(v, na.rm = TRUE) #-> 0, 모두 결측값인데 0이 나옴으로 문제가 됨
+prod(v, na.rm = TRUE) #-> 1, 위와 동일한 문제점 발생
+max(v, na.rm = TRUE) #-> -Inf warning, 위와 동일한 문제 발생
+
+# 누적합이나 곱
+trafic.death <- c(842, 729, 786, 751, 844, 851, 702) # 요일별 교통사고 사망자 수
+cumsum(trafic.death) # 누적합계 -> 842 1571 2357 3108 3952 4803 5505
+cumprod(trafic.death)
+cummax(trafic.death) # 해당 위치까지 최대값 -> 842 842 842 842 844 851 851
+cummin(trafic.death) # 해당 위치까지 최소값 -> 842 729 729 729 729 729 702
+cumsum(c(3, 5, 1, NA, 2)) # 결측값 까지만 계산 -> 3  8  9 NA NA
+diff(trafic.death) # 인접한 값과 차이 (뒤 - 앞) -> -113   57  -35   93    7 -149
+diff(c(3, 5, 1, NA, 2, 5)) # 결측값 부분은 출력 안됨
+diff(1:5, lag = 2) # lag 만큼 떨어진 부분과의 차이 -> 2 2 2
+
+
+# 집합 함수
+p <- 1:10
+q <- 6:15
+union(p,q) # 합집합 -> 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+intersect(p,q) # 교집합 -> 6  7  8  9 10
+setdiff(p,q) # 차집합 -> 1 2 3 4 5
+setequal(p, q) # 두 집합의 동일여부 -> FALSE
+is.element(setdiff(p,q), p) # 앞에 집합에 뒤에 각 요소가 있는지 여부 -> TRUE TRUE TRUE TRUE TRUE
 
 
 
-# 지식인 문의
-data("mtcars")
-wt <- mtcars$wt
-mpg <- mtcars$mpg
-plot(
-  wt,
-  mpg,
-  main = "중량-연비 산점도",
-  xlab = "중량(wt)",
-  ylab = "연비(mpg)",
-  col = "blue",
-  pch = 15
-)
-
-data("USArrests")
-vars <- c("UrbanPop", "Murder", "Assault")
-abc <- USArrests[, vars]
-pairs(abc)
 
 
-? data
-help("USArrests")
 
-tail(USArrests)
-library(Urbanpop)
-# 문의 끝
+

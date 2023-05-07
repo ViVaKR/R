@@ -1,4 +1,3 @@
-
 # Get List : ls(), ls.str()
 # Delete : rm(variable), delete all : rm(list = ls())
 # 저장 : save.image() # nolint: commented_code_linter.
@@ -37,9 +36,9 @@ install.packages("ggplot2")
 .libPaths()
 
 # 설치패키지 정보
-help(package="ggplot2")
+help(package = "ggplot2")
 
-library(help=ggplot2)
+library(help = ggplot2)
 
 # 패키지 메모리 적재
 library(ggplot2)
@@ -52,12 +51,12 @@ search()
 # 현재 사용할 수 있는 데이터 셋 정보보기
 data()
 head(AirPassengers) # 상위 6개
-head(cars) 
+head(cars)
 tail(cars, 10) # 끝에 10개
 help(cars)
 
-# view data set 
-data(package="MASS")
+# view data set
+data(package = "MASS")
 
 data(Animals, package = "MASS")
 head(Animals)
@@ -78,7 +77,7 @@ help("median")
 
 ## 인수정보 보기
 args(median)
-##- 함수명(소속된 패키지)
+## - 함수명(소속된 패키지)
 
 ## 사용 예
 example("median")
@@ -91,7 +90,7 @@ help.search("xyplot")
 hero.vector <- c("A", "B", "C")
 
 ## Regular Expression 정규표현식 이용 검색가능
-apropos("vector") 
+apropos("vector")
 apropos("q$") # q 로 끝나는 변수 정보
 apropos("[7-9]")
 apropos("xy+")
@@ -99,22 +98,20 @@ apropos("xy+")
 ## 정규표현식 도움말
 ?regex
 
+f <- function(x) {
+  n <- length(x)
+  y <- vector(length = n)
 
-
-f<-function(x){
-  n<-length(x)
-  y<-vector(length=n)
-  
-  for(k in 1:n){
-    if(k==n){
-      y[k]<-0
-    }else{
-      t1 = mean(x[1:k])
-      t2 = mean(x[(k+1):n])
+  for (k in 1:n) {
+    if (k == n) {
+      y[k] <- 0
+    } else {
+      t1 <- mean(x[1:k])
+      t2 <- mean(x[(k + 1):n])
       print("------------")
       print(t1)
       print(t2)
-      y[k]<-abs(t1 - t2)
+      y[k] <- abs(t1 - t2)
     }
   }
   return(y)
@@ -122,23 +119,5 @@ f<-function(x){
 
 print(f(c(1:5)))
 
-
-
-
-# mean() - 평균함수
 number <- c(1, 2, 3, 4, 5)
 mean(number)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

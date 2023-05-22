@@ -1,4 +1,5 @@
 ############################## 백터 일반 ##############################
+
 # 백터 생성 : 동일한 하나의 유형으로 구성
 number <- c(1:10)
 number
@@ -220,6 +221,8 @@ setdiff(p,q) # 차집합 -> 1 2 3 4 5
 setequal(p, q) # 두 집합의 동일여부 -> FALSE
 is.element(setdiff(p,q), p) # 앞에 집합에 뒤에 각 요소가 앞 요소에 있는지 여부 -> TRUE TRUE TRUE TRUE TRUE
 is.element(setdiff(p,q), q) #-> FALSE FALSE FALSE FALSE FALSE
+
+# 백
 
 
 

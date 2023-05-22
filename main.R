@@ -6,7 +6,6 @@ x <- 100
 y <- c(2, 3, 5, 7)
 f <- function(y) (y - 32) / 1.8
 
-
 hero <- c("Superman", "Spiderman", "Goodman")
 
 # 변수 저장
@@ -38,13 +37,19 @@ install.packages("ggplot2")
 # 설치패키지 정보
 help(package = "ggplot2")
 
+help(package="tidyverse")
+
+library(tidyverse)
+ls("package:tidyverse")
+
+ls("package:rvest")
 library(help = ggplot2)
 
 # 패키지 메모리 적재
 library(ggplot2)
 
 # 패키지의 함수목록
-ls("package:ggplot2")
+help(package="starwars")
 
 search()
 
@@ -82,10 +87,13 @@ args(median)
 ## 사용 예
 example("median")
 
-
 ## 함수명의 일부만 알고 있을 때
 help.search("xyplot")
 ??xyplot
+
+library(rvest)
+head(rvest)
+help.search("startwars")
 
 hero.vector <- c("A", "B", "C")
 
@@ -121,3 +129,9 @@ print(f(c(1:5)))
 
 number <- c(1, 2, 3, 4, 5)
 mean(number)
+
+# 백터 인덱싱
+
+
+
+

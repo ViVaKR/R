@@ -1,0 +1,19 @@
+---
+title: "README"
+author: "Kim Bum Jun"
+date: "2024-04-20"
+output: html_document
+---
+
+# R 
+
+## 단축키
+
+`Ctrl + Enter` : 다음 라인으로 이동
+`Alt + -` : <- 
+`Ctrl + Shift + M` : %>%
+`Ctrl + Shift + C` : Comment
+`Cmd + D` : Remove Line
+`Alt + Up/Down` : Move line up/down
+`Ctrl + Shift + F10` : R 세션을 새로 시작.
+`Alt + Shift + K` : Show All ShortCut

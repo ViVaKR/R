@@ -283,12 +283,236 @@ prime[seq_along(prime) %% 3 == 0]
 prime[c(FALSE, TRUE)] # 재사용 규칙으로 추출
 prime[c(FALSE, FALSE, TRUE)]
 
-
+# which, month
 rainfall <- c(21.6, 23.6, 45.8, 77.0, 102.2, 133.3, 327.9, 348.0, 137.6, 49.3, 53.0, 24.9) # 강수량.
 
-rainfall
+which(rainfall > 100)
+month.name[which(rainfall > 100)]
+month.abb[which(rainfall > 100)]
 
+which.max(rainfall)
+month.name[which.max(rainfall)]
+month.name[which.min(rainfall)]
 
+rainfall[rainfall > 100]
+rainfall[which.min(rainfall)]
+rainfall[which.max(rainfall)]
+
+traffic.death <- c(842, 729, 786, 751, 844, 851, 702)
+names(traffic.death) <-c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat","Sun")
+traffic.death
+traffic.death["Sat"]
+traffic.death[c("Tue", "Thu", "Sun")]
+weekend <- c("Fri", "Sat", "Sun")
+traffic.death[weekend]
+traffic.death > 800
+traffic.death[traffic.death > 800]
+names(traffic.death[traffic.death > 800]) # 이름만 추출
+
+# [ 팩터 ] #
+# 레벨을 원소로 하는 벡터, 범주형 데이터 형식
+review <- c("Good", "Good", "Indifferent", "Bad", "Good", "Bad")
+review
+review.factor <- factor(review)
+review.factor
+str(review.factor)
+as.numeric(review.factor)
+eventday <- c("Mon", "Mon", "Tue", "Wed", "Mon", "Wed", "Thu", "Fri", "Tue")
+eventday.factor <- factor(eventday)
+eventday.factor
+eventday.factor <- factor(eventday, levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))
+eventday.factor
+levels(review.factor)
+levels(review.factor) <- c("B", "G", "I")
+review.factor
+nlevels(review.factor)
+length(levels(review.factor))
+
+# Ordered Factor, 서열벡터
+eval <- c("Medium", "Low", "Hight", "Medium", "Hight")
+eval.factor <- factor(eval)
+eval.factor
+eval.ordered <- factor(eval, levels = c("Low", "Medium", "Hight"), ordered = TRUE)
+eval.ordered
+table(eval.factor)
+table(eval.ordered)
+
+sex <- c(2, 1, 2, 2, 1, 0)
+sex.factor <- factor(sex, levels = c(1, 2), labels = c("Male", "FeMale"))
+table(sex.factor)
+
+# factor, forcats #
+install.packages("forcats") # install forcats package
+library(forcats) # load package
+
+temp <- c("Vegetables", "Fruits", 
+          "Vegetables", "Grains", 
+          "Fruits", "Vegetables", 
+          "Dairy", "Fruits", 
+          "Protenins", "Fruits")
+
+food <- factor(temp)
+
+fct_inorder(food) # 그대로 순서대로
+fct_infreq(food) # 출현 빈도
+fct_relevel(food, "Fruits", "Vegetables", "Grains", "Protenins", "Dairy") # 순서 재조정
+fct_relevel(food, "Protenins", after = 2) # 특정위치
+fct_relevel(food, "Dairy", after=Inf) # 끝으로 
+
+value <- c(1000, 1500, 1200, 700, 2000, 2000, 1350, 2500, 15000, 3000)
+food
+
+# 중복된 대표값은 중위수로 결정.
+fct_reorder(food, .x = value) # 오름 차순.
+
+# 중복된 대표값은 평균으로 결정.
+fct_reorder(food, .x = value, .fun = mean)
+
+# 내림차순
+fct_reorder(food, .x = value, .desc = TRUE)
+
+# Rename
+fct_recode(food, Fats="Protenins", Fats="Dairy")
+food
+
+# 랜덤
+rnd <- runif(9) * 10
+round(rnd)
+
+# 행렬, matrix
+
+v <- 1:12
+dim(v) <- c(3,4)# 3행, 4열 2차원 행렬.
+
+m <- 1:12
+matrix(data = m, nrow = 3, ncol = 4)               # 열방향으로 채워짐.
+matrix(data = m, nrow = 3, ncol = 4, byrow = TRUE) # 행의 방향으로 채워짐.
+
+rnames <- c("R1", "R2", "R3")
+cnames <- c("C1", "C2", "C3", "C4")
+matrix(data = m, nrow = 3, ncol = 4, byrow = TRUE, dimnames = list(rnames, cnames))
+
+matrix(data = 0, 3, 4) # 0으로 채워진 행렬
+?matrix
+matrix(NA, 3, 4)
+mat <- matrix(m, ncol = 4)
+str(mat)
+dim(mat) # 행과 열의 수량 
+dim(mat)[1] # 행의 수
+dim(mat)[2] # 열의 수
+nrow(mat) # 행의 수 
+ncol(mat) # 열의 수 
+length(mat) # 행렬의 셀의 갯수
+
+# 벡터 결합으로 행렬 만들기
+v1 <- c(1, 2, 3, 4, 5)
+v2 <- c(6, 7, 8, 9, 10)
+rbind(v1, v2)
+cbind(v1, v2)
+cbind(1:3, 4:6, matrix(7:12, 3, 2))
+rbind(matrix(1:6, 2, 3), matrix(7:12, 2, 3))
+
+# 행렬 연산
+mtx <- matrix(1:6, 2, 3)
+mtx
+mtx + 1
+mtx - 1
+mtx * 2
+mtx / 2
+a <- matrix(1:6, 2, 3)
+b <- matrix(6:1, 2, 3)
+a
+b
+a + b
+a - b
+a * b
+a / b
+c <- matrix(6:1, 3,2)
+c
+a <- matrix(1:6, 2, 3)
+a
+b <- matrix(1:6, 3, 2)
+b
+a %*% b # 행렬 곱
+c <- matrix(1:6, 2, 3)
+c
+a
+a %*% c
+
+# 벡터와 행렬 곱
+mtx <- matrix(1:6, 2, 3)
+mtx
+mtx %*% 1:3
+
+1:2 %*% mtx
+mtx <- matrix(1:6, 2, 3)
+mtx
+mtx + 1:3 # 재사용 규칙, 열 방향.
+
+mtx
+rowSums(mtx)
+colSums(mtx)
+rowMeans(mtx)
+colMeans(mtx)
+
+# 전치행렬 (행->열, 열->행)
+mtx
+t(mtx)
+t(1:5) # 열에서 행으로 전치
+mtx
+mtx[2,]
+t(mtx[2,])
+
+# 행렬인덱싱
+v <- 1:12
+mat <- matrix(v, 3, 4)
+mat
+str(mat)
+mat[1,1]
+mat[2,2]
+mat[2,]
+mat[,3] # 벡터로 출력 됨.가급적 차원을 줄임으로 행렬을 예상하는 오류가 발생함.
+mat[1,, drop= FALSE] # 행렬 차원 유지 됨
+mat[,3, drop = FALSE]
+mat[2:3,] # 2번째 부터 3번째 
+mat[,3:4] # 3번째 부터 4번째 열
+mat
+mat[c(1,3),] # 1번 3번 행
+mat[, -c(2,3)] # 2, 3번 열 제외
+mat
+mat[1,3] <-77
+mat
+mat[2,] <-c(22, 55) # 재사용 규칙
+mat
+mat[2:3, 3:4] <-c(1, 2, 3, 4) # 특별한 옵션을 지정하지 않으면 열방향으로 값을 채움.
+city.distance <- c(0, 331, 238, 269, 195, 
+                   331, 0, 95, 194, 189, 
+                   238, 95, 0, 171, 130, 
+                   269, 194, 171, 0, 77, 
+                   195, 189, 130, 77,0)
+
+city.distance
+city.distance.mat <- matrix(city.distance, 5, 5, byrow = TRUE)
+city.distance.mat
+# 행렬에 이름지정
+colnames(city.distance.mat) <- c("Seoul", "Busan", "Daegu", "Gwangju", "Jeonju")
+rownames(city.distance.mat) <- c("Seoul", "Busan", "Daegu", "Gwangju", "Jeonju")
+city.distance.mat
+colnames(city.distance.mat)
+rownames(city.distance.mat)
+city.distance.mat["Seoul", "Busan"] # Seoul - Busan distance
+city.distance.mat[, "Seoul"]
+city.distance.mat[c("Seoul", "Gwangju"), ]
+
+# [ 배열 ]
+#--> 벡터(1차원)와 행렬(2차원)은 배열의 한 특별한 유형에 해당됨.
+#--> 배열은 세개 이상의 차원을 갖는 데이터 구조를 말함.
+#--> 벡터에 차원을 부여 하여 만듦
+
+a <- 1:24
+a
+dim(a) <- c(3, 4, 2) # 3차원 배열 생성.
+a
 
 
 

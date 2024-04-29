@@ -509,10 +509,121 @@ city.distance.mat[c("Seoul", "Gwangju"), ]
 #--> 배열은 세개 이상의 차원을 갖는 데이터 구조를 말함.
 #--> 벡터에 차원을 부여 하여 만듦
 
+# 3차원 배열
 a <- 1:24
 a
 dim(a) <- c(3, 4, 2) # 3차원 배열 생성.
 a
+
+
+array(1:12, c(2, 3, 2))
+
+# 값 추출
+arr <- array(1:12, c(2, 3, 2))
+arr
+arr[1, 3, 2] # 2번째 테이블의 1행 3열.
+arr[,1,2] # 2번째 테이블에서 첫번째 열의 모든 열, 차원수가 줄어듬, 벡터로 출력.
+arr[,1,2, drop = FALSE] # 배열 형식 유지.
+arr[2,,] # 행이 열로 변경됨.
+
+
+# [ 리스트 ]
+# 서로 다른 유형의 데이터를 수용가능함.
+# list 함수
+# 활용도가 매우 높은 데이터 구조.
+list(0.6826, 0.9544, 0.9974)
+list(1.23, "Apple", c(2,3,5,7), matrix(1:6, ncol = 3), mean)
+
+lst <- list()
+lst
+lst[[1]] <-1.23
+lst[[2]] <- "Apple"
+lst[[3]] <- c(2,3,5,7)
+lst[[4]] <- matrix(1:6, ncol = 3)
+lst[[5]] <- mean
+lst
+
+lst <- list(0.6826, 0.9544, 0.9974)
+lst
+names(lst) <- c("sigma1", "sigma2", "sigma3") # namming : names 함수
+lst
+names(lst)
+length(lst)
+
+hello <- list("Brazil", "Africa", "Germany")
+world <- list("Korea", "France", "USA")
+hello
+world
+c(hello, world) # 합치기
+
+a <- list(1,2,3,4,5,6,7)
+a
+
+mean(unlist(a)) # 벡터로 만듬.
+min(unlist(a))
+max(unlist(a))
+
+# 리스트 인덱싱.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

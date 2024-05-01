@@ -564,16 +564,29 @@ min(unlist(a))
 max(unlist(a))
 
 # 리스트 인덱싱.
+# [[]] : 자루 내에 포함된 데이터
+# []   :  자루 자체 추출 (원소)
 
+product <- list("A002", "Mouse", 30000)
+product
 
+product[[3]] #-> 30000
+product[[2]] #-> "Mouse"
+product[3]  #-> 자루 자체를 다 추출함.
+product[2]
 
+class(product[[3]]) # -> numeric
+class(product[3])   # -> list
 
+product[[3]] * 0.9
+product[c(1,2)]
 
+product[c(FALSE, TRUE, TRUE)] # 2, 3 번째 원소만 추출
+product[-1] # 첫번째 원소 제거 
 
-
-
-
-
+# naming
+product <- list(id = "A002", name = "Mouse", price = 30000)
+product
 
 
 

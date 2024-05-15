@@ -587,82 +587,215 @@ product[-1] # 첫번째 원소 제거
 # naming
 product <- list(id = "A002", name = "Mouse", price = 30000)
 product
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+product[["name"]]
+product$name
+product[c("name", "price")]
+
+# 오류발생 상화들.
+product[["fourth"]] # NULL
+product$fourth # NULL
+product[[4]] # Error
+product[c(4,2,5)] # NULL Mouse NULL, no error
+product[c("fourth", "name", "fifth")]
+
+lst <- list(one= 1, two=2, three=list(alpha=3.1, beta=3.2)) # 중첩 구조
+lst
+
+lst[["three"]]
+lst$three$beta
+lst[["three"]][["beta"]]
+
+# 값변경
+prod <- list(id="A001", name="Mouse", price="30000")
+prod
+prod[[3]] <- 35000
+prod
+prod$price <- 400000
+prod
+prod$price <- 33000
+prod$price
+prod[3] <- 37500
+prod
+prod["price"] <- 39000
+prod$price
+
+# 여러개의 값을 할당할 때
+# 대괄호 2개를 사용하는 방법
+prod[[3]] <- c(30000, 35000)
+# 대괄호 1개를 사용하는 방법
+prod[3] <- list(c(31000, 37500))
+prod
+
+prod[1:3] <- list("A002", "Keyboard", "90000")
+prod
+
+
+prod[[4]] <- c("Demestic", "Export")
+prod
+
+prod$madein <- c("Korea")
+prod[[""]]
+prod
+
+
+# [ 데이터 프레임 ] #
+
+v1 <- c("A001", "A002", "A003")
+v2 <- c("Mouse", "Keyboard", "USB")
+v3 <- c(30000, 90000, 50000)
+
+data.frame(v1, v2, v3) # 열로 구성,
+
+# 벡터 중 하나를 행이름으로 사용하기
+data.frame(row.names = v1, v2, v3)
+# 의미있는 이름으로 지정 하기
+product <- data.frame(id=v1, name=v2, price=v3, stringsAsFactors = FALSE)
+product
+str(product)
+
+# from matrix
+mat <- matrix(c(1, 3, 5, 7, 9,
+                2, 4, 6, 8, 10,
+                2, 3, 5, 7, 11), ncol = 3)
+mat
+as.data.frame(mat)
+
+number <- as.data.frame(mat)
+colnames(number) <-c("odd", "even", "prime")
+number
+
+# from list
+v1 <- c("A001", "A002", "A003")
+v2 <- c("Mouse", "Keyboard", "USB")
+v3 <- c(30000, 90000, 50000)
+lst <- list(v1, v2, v3)
+lst
+
+prod = as.data.frame(lst)
+colnames(prod) <- c("id", "name", "price")
+prod
+
+nrow(prod)
+ncol(prod)
+length(prod) # count of cells
+
+# 데이터 프레임 확장 (rbind, cbind)
+id <- c("A001", "A002", "A003")
+name <- c("Mouse", "Keyboard", "USB")
+price <- c(30000, 90000, 50000)
+product <- data.frame(id, name, price,
+                      stringsAsFactors = FALSE)
+
+product
+
+# rbind : 행추가
+product <- rbind(product, c("A004", "Monitor", "250000"))
+product
+
+new.rows <- data.frame(id = c("A005", "A006"),
+                       name = c("Memory", "CPU"),
+                       price = c(35000, 330000))
+
+new.rows
+product <- rbind(product, new.rows)
+product
+
+# cbind : 열방향 추가
+product <- cbind(product,
+                 madein = c("Korea", "USA", "Africa", "Korea", "Korea", "USA"))
+
+product$madein <- c("Korea", "USA", "Africa", "Korea", "Korea", "USA")
+product
+
+new.cols <- data.frame(manufacturer = c("Logitech", 
+                                        "Samsung", 
+                                        "Samsung", 
+                                        "Samsung", 
+                                        "Intel", 
+                                        "Logitech"),
+                       quantity = c(20, 15, 50, 30, 40, 10))
+
+new.cols
+product <- cbind(product, new.cols)
+product
+
+# 같은 열 이름을 채크하지 않음.
+cols1 <- data.frame(x = c("a", "b", "c"),
+                    y = c(1, 2, 3))
+cols1
+
+cols2 <- data.frame(x = c("alpha", "beta", "gamma"),
+                    y = c(100, 200, 300))
+cols2
+cbind(cols1, cols2)
+
+df1 <- data.frame(sex = "female", months = 1, weight = 3.5) # 신생아의 정보 
+df2 <- data.frame(sex = "male", months = 3, weight = 4.8) # 신생아의 정보 
+df3 <- data.frame(sex = "male", months = 4, weight = 5.3) # 신생아의 정보 
+df4 <- data.frame(sex = "female", months = 9, weight = 9.4) # 신생아의 정보 
+df5 <- data.frame(sex = "female", months = 7, weight = 8.3) # 신생아의 정보 
+
+lst <- list(df1, df2, df3, df4, df5)
+lst
+
+str(lst)
+lst[[1]]
+lst[[2]]
+
+rbind(lst[[1]], lst[[2]])
+
+
+do.call(rbind, lst)
+
+# 데이터프레임 인덱싱
+?state
+state.abb
+state.area
+
+us.state  <- data.frame(state.abb, state.name,
+                         state.region, state.area,
+                        stringsAsFactors = FALSE)
+
+us.state
+str(us.state)
+us.state[[2]]
+str(us.state[[2]])
+us.state[2] # 데이터 프레임 형식.
+us.state[c(2,4)]
+us.state[,2] # vector type
+us.state[,2, drop = FALSE] # origin
+us.state[,c(2,4)] # dataframe type, cols 2, 4
+us.state[["state.name"]] # string vector
+us.state$state.name
+us.state[,"state.name"]
+
+us.state[c("state.name", "state.area")] # dataframe type, list indexing
+us.state[,c("state.name", "state.area")] # dataframe type, matrix indexing
+
+state.x77
+str(state.x77)
+head(state.x77)
+
+states <- data.frame(state.x77)
+str(states)
+row.names(states)
+states$Name <- row.names(states)
+row.names(states) <- NULL
+head(states)
+
+# --> 부자 동네
+rich.states <- states[states$Income > 5000, c("Name", "Income")]
+rich.states
+
+# --> 큰 동네
+large.state <- states[states$Area > 100000, c("Name", "Area")]
+large.state
+
+# --> 부자이면서 땅이 넓은 동네.
+ merge(rich.states, large.state)
+?merge
+
+merge(rich.states, large.state, all=TRUE) # 합집합
 
 
 

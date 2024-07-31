@@ -815,6 +815,49 @@ merge(rich.states, large.state, all=TRUE) # 합집합
 
 
 
+cat('Hi\nHello\nHow Are You?\nFineThanks\nAnd\nYou?')
+
+message <- c("Hello", "World", "How", "Are", "You?")
+writeLines(message)
+
+
+sum <- 0
+i <- 1
+while(TRUE) {
+  sum = sum + i
+  if(i > 100)
+  {
+    break;
+  }
+  i <- i + 1
+}
+
+cat("1 + 2 + 3...", i, "=", sum)
+
+
+num1 = 5
+num2 = 9
+m <- num1 + num2 * nchar("computing")
+print(m)
+
+size <- nchar("computing")
+size
+9 * 9 + 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,50 @@
 # 벡터 : 동일한 원소, 1차원 집합
 c(1, 2, 3, 4, 5, 8, 9, 10)
 c("we", "love", "data", "analytics")
+
+
+
+
+
+
+
+
+
+
+ds <- c("FALL","SUMMER","SPRING", "WINTER")
+ts <- c(ds[3], ds[2], ds[1], ds[4])
+ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 c(TRUE, FALSE, TRUE, FALSE)
 odd <- c(1, 3, 5)
 even <- c(2, 4, 6)
@@ -385,12 +429,54 @@ v <- 1:12
 dim(v) <- c(3,4)# 3행, 4열 2차원 행렬.
 
 m <- 1:12
-matrix(data = m, nrow = 3, ncol = 4)               # 열방향으로 채워짐.
+m
+
+temp = matrix(data = m, nrow = 3, ncol = 4)               # 열방향으로 채워짐.
+temp
 matrix(data = m, nrow = 3, ncol = 4, byrow = TRUE) # 행의 방향으로 채워짐.
+
 
 rnames <- c("R1", "R2", "R3")
 cnames <- c("C1", "C2", "C3", "C4")
 matrix(data = m, nrow = 3, ncol = 4, byrow = TRUE, dimnames = list(rnames, cnames))
+
+
+
+
+# 첫번째 질문에 대한 답변 파트
+# 모두 선택 후 -> CMD( or Control) + Enter
+cols <- c("SPRING", "SUMMER", "FALL", "WINTER")
+rows <- c("Value")
+nums <- c(3, 4, 2, 1)
+mtrx <- matrix(data = nums, nrow=1, ncol = 4, byrow = TRUE, dimnames = list(rows, cols))
+mtrx
+
+# 두번째 질문에 대한 답변 파트 
+n <- 12
+type <- '-'
+if (n %% 2 == 1) {
+  type <- 'odd'
+}else {
+  type <- 'even'
+}
+print(type)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 matrix(data = 0, 3, 4) # 0으로 채워진 행렬
 ?matrix
@@ -844,10 +930,11 @@ size <- nchar("computing")
 size
 9 * 9 + 5
 
+t = "981214"
+d = as.Date("1998-12-24")
+print(d+2000)
 
-
-
-
+format(d+1000, "%Y년 %m월 %d일")
 
 
 
